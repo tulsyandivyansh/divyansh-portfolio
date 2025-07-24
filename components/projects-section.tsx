@@ -14,7 +14,7 @@ const projects = [
     tech: ["C++", "POSIX", "System Programming"],
     date: "July 2025",
     image: "/placeholder.svg?height=200&width=400",
-    github: "https://github.com/tulsyandivyansh/shell-system",
+    github: "https://github.com/tulsyandivyansh",
     demo: null,
   },
   {
@@ -24,8 +24,8 @@ const projects = [
     tech: ["React.js", "Express.js", "MySQL", "Node.js"],
     date: "May 2025",
     image: "/placeholder.svg?height=200&width=400",
-    github: "https://github.com/tulsyandivyansh/form-builder",
-    demo: "https://form-builder-demo.vercel.app",
+    github: "https://github.com/tulsyandivyansh",
+    demo: null,
   },
   {
     title: "Big Two Card Game",
@@ -34,7 +34,7 @@ const projects = [
     tech: ["Java", "Multi-threading", "GUI"],
     date: "Nov 2024",
     image: "/placeholder.svg?height=200&width=400",
-    github: "https://github.com/tulsyandivyansh/big-two-game",
+    github: "https://github.com/tulsyandivyansh",
     demo: null,
   },
   {
@@ -44,7 +44,7 @@ const projects = [
     tech: ["C++", "NCURSES", "Game Development"],
     date: "Apr 2024",
     image: "/placeholder.svg?height=200&width=400",
-    github: "https://github.com/tulsyandivyansh/rocket-shooter",
+    github: "https://github.com/tulsyandivyansh/ENGG1340--Rocket-Rampage",
     demo: null,
   },
 ]
@@ -103,16 +103,6 @@ export function ProjectsSection() {
                       <Github className="w-4 h-4 mr-2" />
                       Code
                     </Button>
-                    {project.demo && (
-                      <Button
-                        size="sm"
-                        onClick={() => window.open(project.demo, "_blank")}
-                        className="bg-green-400 hover:bg-green-500 text-black"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Demo
-                      </Button>
-                    )}
                   </div>
                 </div>
 
@@ -155,16 +145,6 @@ export function ProjectsSection() {
                       <Github className="w-4 h-4 mr-2" />
                       View Code
                     </Button>
-                    {project.demo && (
-                      <Button
-                        onClick={() => window.open(project.demo, "_blank")}
-                        size="sm"
-                        className="flex-1 bg-green-400 hover:bg-green-500 text-black transition-all duration-300"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Live Demo
-                      </Button>
-                    )}
                   </div>
                 </CardContent>
               </Card>
