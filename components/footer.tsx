@@ -1,8 +1,9 @@
 export function Footer() {
   return (
-    <footer className="py-8 border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p className="text-gray-400">© 2025 Divyansh Tulsyan. Built with Next.js and Tailwind CSS.</p>
+    <footer className="border-t border-white/10 py-8">
+      <div className="section-shell flex flex-col gap-2 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+        <p>© {new Date().getFullYear()} Divyansh Tulsyan</p>
+        <p>Designed and built with Next.js</p>
       </div>
     </footer>
   )

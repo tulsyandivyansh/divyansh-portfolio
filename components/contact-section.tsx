@@ -1,82 +1,43 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Mail, Phone, Linkedin } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+import { ArrowUpRight, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
+
+const links = [
+  { icon: Mail, label: "Email", value: "tulsyandivyanshh@gmail.com", href: "mailto:tulsyandivyanshh@gmail.com" },
+  { icon: Linkedin, label: "LinkedIn", value: "/in/dtulsyan", href: "https://www.linkedin.com/in/dtulsyan" },
+  { icon: Github, label: "GitHub", value: "@tulsyandivyansh", href: "https://github.com/tulsyandivyansh" },
+  { icon: Phone, label: "Phone", value: "+852 5631 6338", href: "tel:+85256316338" },
+]
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h2>
-          <div className="w-20 h-1 bg-green-400 mx-auto mb-8"></div>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            I'm always open to discussing new opportunities, interesting projects, or just having a chat about
-            technology.
-          </p>
+    <section id="contact" className="scroll-mt-24 py-24 sm:py-32">
+      <div className="section-shell">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="surface relative overflow-hidden rounded-[2rem] p-7 sm:p-12 lg:p-16">
+          <div aria-hidden className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-green-400/10 blur-3xl" />
+          <div className="relative grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
+            <div>
+              <p className="section-label">05 · Contact</p>
+              <h2 className="text-balance mt-5 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-6xl">Have an interesting problem to solve?</h2>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-slate-400">I’m open to software engineering roles, ambitious technical projects, and conversations about systems, AI, or product engineering.</p>
+              <div className="mt-8 inline-flex items-center gap-2 text-sm text-slate-500"><MapPin className="h-4 w-4 text-green-400" /> Based in Hong Kong</div>
+            </div>
+
+            <div className="grid content-start gap-3">
+              {links.map(({ icon: Icon, label, value, href }) => (
+                <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.035] p-4 transition hover:border-green-400/30 hover:bg-green-400/[0.06]">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/5 text-green-400"><Icon className="h-5 w-5" /></span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-xs uppercase tracking-[0.15em] text-slate-500">{label}</span>
+                    <span className="mt-1 block truncate text-sm font-medium text-slate-200">{value}</span>
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 text-slate-600 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-green-400" />
+                </a>
+              ))}
+            </div>
+          </div>
         </motion.div>
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          <motion.a
-            href="mailto:tulsyandivyanshh@gmail.com"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="group"
-          >
-            <Card className="bg-gray-800/50 border-gray-700 hover:border-green-400 transition-all duration-300 transform hover:scale-105 text-center">
-              <CardContent className="p-8">
-                <Mail className="w-12 h-12 text-green-400 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-semibold mb-2">Email</h3>
-                <p className="text-gray-400">tulsyandivyanshh@gmail.com</p>
-              </CardContent>
-            </Card>
-          </motion.a>
-
-          <motion.a
-            href="tel:+85256316338"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="group"
-          >
-            <Card className="bg-gray-800/50 border-gray-700 hover:border-green-400 transition-all duration-300 transform hover:scale-105 text-center">
-              <CardContent className="p-8">
-                <Phone className="w-12 h-12 text-green-400 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-semibold mb-2">Phone</h3>
-                <p className="text-gray-400">(+852) 56316338</p>
-              </CardContent>
-            </Card>
-          </motion.a>
-
-          <motion.a
-            href="https://www.linkedin.com/in/dtulsyan"
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="group"
-          >
-            <Card className="bg-gray-800/50 border-gray-700 hover:border-green-400 transition-all duration-300 transform hover:scale-105 text-center">
-              <CardContent className="p-8">
-                <Linkedin className="w-12 h-12 text-green-400 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-semibold mb-2">LinkedIn</h3>
-                <p className="text-gray-400">Connect with me</p>
-              </CardContent>
-            </Card>
-          </motion.a>
-        </div>
       </div>
     </section>
   )

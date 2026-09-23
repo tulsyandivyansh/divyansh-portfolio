@@ -4,8 +4,9 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Divyansh Tulsyan',
-  description: 'Portfolio'
+  title: 'Divyansh Tulsyan · Software Engineer',
+  description: 'Computer science student at HKU building latency-sensitive systems and intelligent software.',
+  keywords: ['Divyansh Tulsyan', 'software engineer', 'systems programming', 'AI', 'HKU'],
 }
 
 export default function RootLayout({

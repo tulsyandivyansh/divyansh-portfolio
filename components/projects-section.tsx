@@ -1,174 +1,105 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Github, ExternalLink, Calendar } from "lucide-react"
+import { ArrowUpRight, Calendar, Github } from "lucide-react"
+import Image from "next/image"
 
 const projects = [
   {
-    title: "Shell System",
-    description:
-      "POSIX-compliant shell in C++ with advanced features including I/O redirection, pipelines, and interactive REPL. This project implements a fully functional command-line interface that supports complex command chaining, background processes, and custom built-in commands. The shell provides robust error handling and maintains compatibility with standard UNIX shell operations.",
-    tech: ["C++", "POSIX", "System Programming"],
+    title: "Low-Latency Electronic Trading Engine",
+    eyebrow: "Systems engineering",
+    description: "A complete C++ electronic trading stack: binary UDP market data, sequence-gap detection, a price-time-priority matching engine, TCP order entry, and an autonomous market-making client. Latency-critical paths are measured and tuned with allocation-free serialization, CPU affinity experiments, sanitizers, and Linux perf.",
+    tech: ["C++", "Linux", "Networking", "Performance"],
+    date: "July 2026",
+    image: "/projects/trading-engine.jpg",
+    github: "https://github.com/tulsyandivyansh/low-latency-trading-engine",
+    featured: true,
+  },
+  {
+    title: "Unix Shell & Process Runtime",
+    eyebrow: "Operating systems",
+    description: "A C++ Unix shell and runtime with a custom lexer and parser, pipelines, redirection, conditional execution, history, autocompletion, job control, signals, /proc inspection, resource limits, Linux namespaces, and ptrace tracing. Stress tests, fuzzing, ASan, and UBSan support reliability.",
+    tech: ["C++", "POSIX", "Linux"],
     date: "July 2025",
-    image: "/placeholder.svg?height=200&width=400",
-    github: "https://github.com/tulsyandivyansh",
-    demo: null,
+    image: "/projects/unix-shell.jpg",
+    github: "https://github.com/tulsyandivyansh/shell",
   },
   {
     title: "Form Builder",
-    description:
-      "Dynamic drag-and-drop form builder with React.js frontend and MySQL backend for seamless form management. Features include real-time form preview, custom field validation, responsive design templates, and comprehensive analytics dashboard. Users can create complex forms with conditional logic and export data in multiple formats.",
-    tech: ["React.js", "Express.js", "MySQL", "Node.js"],
+    eyebrow: "Full-stack product",
+    description: "A responsive drag-and-drop form builder with live previews, custom validation, reusable templates, conditional logic, analytics, and multi-format exports. Built with a React interface and an Express, Node.js, and MySQL backend.",
+    tech: ["React", "Express", "MySQL", "Node.js"],
     date: "May 2025",
-    image: "/placeholder.svg?height=200&width=400",
-    github: "https://github.com/tulsyandivyansh",
-    demo: null,
+    image: "/projects/form-builder.jpg",
+    github: "https://github.com/tulsyandivyansh/Form_builder",
   },
   {
     title: "Big Two Card Game",
-    description:
-      "Multiplayer card game in Java with GUI, multi-threading support, and complete game logic implementation. The game supports up to 4 players with AI opponents, real-time networking capabilities, and a sophisticated scoring system. Features include animated card movements, sound effects, and tournament mode with leaderboards.",
-    tech: ["Java", "Multi-threading", "GUI"],
+    eyebrow: "Multiplayer Java",
+    description: "A complete multiplayer implementation of Big Two with a desktop GUI, real-time multi-client gameplay, card validation, turn management, win conditions, AI opponents, animated card movement, sound effects, and tournament scoring.",
+    tech: ["Java", "Multithreading", "GUI"],
     date: "Nov 2024",
-    image: "/placeholder.svg?height=200&width=400",
-    github: "https://github.com/tulsyandivyansh",
-    demo: null,
+    image: "/projects/big-two-game.png",
+    github: "https://github.com/tulsyandivyansh/Big-Two",
   },
   {
-    title: "Rocket Shooter Game",
-    description:
-      "2D game in C++ using NCURSES library with dynamic gameplay, multiple levels, and high-score system. The game features smooth character movement, collision detection, power-ups, and progressively challenging levels. Includes particle effects for explosions, background music integration, and save/load functionality for game progress.",
-    tech: ["C++", "NCURSES", "Game Development"],
+    title: "Rocket Rampage",
+    eyebrow: "Terminal game",
+    description: "A fast 2D C++ game built with NCURSES, featuring responsive movement, collision detection, power-ups, multiple levels, progressive difficulty, a high-score system, particle effects, background audio, and save/load support.",
+    tech: ["C++", "NCURSES", "Game Design"],
     date: "Apr 2024",
-    image: "/placeholder.svg?height=200&width=400",
+    image: "/projects/rocket-rampage.jpg",
     github: "https://github.com/tulsyandivyansh/ENGG1340--Rocket-Rampage",
-    demo: null,
   },
 ]
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 bg-gray-900/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Projects</h2>
-          <div className="w-20 h-1 bg-green-400 mx-auto mb-4"></div>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            A collection of projects that showcase my technical skills and passion for creating innovative solutions.
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group h-full"
-            >
-              <Card className="bg-gray-800/50 border-gray-700 hover:border-green-400/50 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-green-400/10 h-full flex flex-col overflow-hidden">
-                {/* Project Image */}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                  {/* Date badge */}
-                  <div className="absolute top-4 right-4 bg-gray-900/80 backdrop-blur-sm text-gray-300 px-3 py-1 rounded-full text-sm flex items-center space-x-1">
-                    <Calendar className="w-3 h-3" />
-                    <span>{project.date}</span>
-                  </div>
-
-                  {/* Quick action buttons on hover */}
-                  <div className="absolute inset-0 flex items-center justify-center space-x-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Button
-                      size="sm"
-                      onClick={() => window.open(project.github, "_blank")}
-                      className="bg-gray-900/80 hover:bg-gray-800 text-white border border-gray-600 hover:border-green-400 backdrop-blur-sm"
-                    >
-                      <Github className="w-4 h-4 mr-2" />
-                      Code
-                    </Button>
-                  </div>
-                </div>
-
-                <CardContent className="p-6 flex-1 flex flex-col">
-                  {/* Project Title */}
-                  <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-xl font-bold text-green-400 group-hover:text-green-300 transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
-
-                  {/* Scrollable Description */}
-                  <div className="flex-1 mb-4">
-                    <div className="max-h-24 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 pr-2">
-                      <p className="text-gray-300 leading-relaxed text-sm">{project.description}</p>
-                    </div>
-                  </div>
-
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="outline"
-                        className="border-green-400/50 text-green-400 hover:bg-green-400/10 transition-colors text-xs"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex space-x-3 mt-auto">
-                    <Button
-                      onClick={() => window.open(project.github, "_blank")}
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 border-green-400/50 text-green-400 hover:bg-green-400 hover:text-black transition-all duration-300"
-                    >
-                      <Github className="w-4 h-4 mr-2" />
-                      View Code
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+    <section id="projects" className="scroll-mt-24 py-24 sm:py-32">
+      <div className="section-shell">
+        <p className="section-label">03 · Selected work</p>
+        <div className="mt-5 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <h2 className="text-balance max-w-2xl text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">Projects built from the protocol up.</h2>
+          <a href="https://github.com/tulsyandivyansh" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-green-400 hover:text-green-300">
+            View GitHub profile <ArrowUpRight className="h-4 w-4" />
+          </a>
         </div>
 
-        {/* View More Projects Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <Button
-            onClick={() => window.open("https://github.com/tulsyandivyansh", "_blank")}
-            variant="outline"
-            className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black px-8 py-3 rounded-full transition-all duration-300"
-          >
-            <Github className="w-5 h-5 mr-2" />
-            View All Projects on GitHub
-          </Button>
-        </motion.div>
+        <div className="mt-14 grid gap-5 md:grid-cols-2">
+          {projects.map((project, index) => (
+            <motion.article
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: Math.min(index * 0.06, 0.18) }}
+              viewport={{ once: true, margin: "-60px" }}
+              className={`surface group overflow-hidden rounded-3xl ${project.featured ? "md:col-span-2" : ""}`}
+            >
+              <div className={project.featured ? "grid lg:grid-cols-[1.2fr_.8fr]" : ""}>
+                <a href={project.github} target="_blank" rel="noreferrer" className={`relative block overflow-hidden ${project.featured ? "aspect-[16/10] lg:aspect-auto lg:min-h-[410px]" : "aspect-[16/10]"}`} aria-label={`View ${project.title} on GitHub`}>
+                  <Image src={project.image} alt={`${project.title} project visual`} fill sizes={project.featured ? "(max-width: 1024px) 100vw, 700px" : "(max-width: 768px) 100vw, 560px"} className="object-cover transition duration-700 group-hover:scale-[1.035]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080c0f]/70 via-transparent to-transparent" />
+                  <span className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-xl border border-white/15 bg-black/35 text-white backdrop-blur-md transition group-hover:bg-green-400 group-hover:text-[#07100b]"><ArrowUpRight className="h-4 w-4" /></span>
+                </a>
+
+                <div className="flex flex-col p-6 sm:p-8">
+                  <div className="flex items-center justify-between gap-3 text-xs uppercase tracking-[0.16em]">
+                    <span className="font-semibold text-green-400">{project.eyebrow}</span>
+                    <span className="inline-flex items-center gap-1.5 text-slate-500"><Calendar className="h-3.5 w-3.5" />{project.date}</span>
+                  </div>
+                  <h3 className={`${project.featured ? "text-3xl sm:text-4xl" : "text-2xl"} mt-5 font-semibold tracking-[-0.03em] text-white`}>{project.title}</h3>
+                  <p className="mt-4 flex-1 leading-7 text-slate-400">{project.description}</p>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {project.tech.map((tech) => <span key={tech} className="rounded-lg border border-white/10 bg-white/[0.035] px-2.5 py-1 text-xs text-slate-300">{tech}</span>)}
+                  </div>
+                  <a href={project.github} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-green-400">
+                    <Github className="h-4 w-4" /> View source
+                  </a>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   )
